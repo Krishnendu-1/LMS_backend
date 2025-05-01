@@ -7,6 +7,7 @@ import hpp from 'hpp';
 import cookieParser from 'cookie-parser';
 import cors from 'cors'
 import ExpressMongoSanitize from 'express-mongo-sanitize';
+import healthCheckRoute from './routes/healthCheck.route.js';
 const app=express();
 configDotenv();
 
@@ -62,6 +63,8 @@ app.use((err,req,res,next)=>{
 })
 
 //API routes
+app.use('/health',healthCheckRoute)
+
 
 //global 404 error handler--->KEEP IT IN BOTTOM
 app.use((req,res)=>{
